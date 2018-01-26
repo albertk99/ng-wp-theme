@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http/src/static_response';
-import { PostsService } from '../../wp-services/posts.service';
+import { PostsService } from '../../shared/wp-services/posts.service';
 
 @Component({
   selector: 'app-post-list',

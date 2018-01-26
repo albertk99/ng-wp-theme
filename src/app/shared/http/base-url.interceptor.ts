@@ -4,7 +4,7 @@ import { HttpClient, HttpRequest, HttpInterceptor, HttpEvent, HttpHandler } from
 import { Observable } from 'rxjs/Observable';
 
 declare function require(url: string);
-const config = require('../../config.json');
+const config = require('../../../config.json');
 
 @Injectable()
 export class BaseUrlInterceptor implements HttpInterceptor {

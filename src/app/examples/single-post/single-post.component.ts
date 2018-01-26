@@ -3,7 +3,7 @@ import { Response } from '@angular/http/src/static_response';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import { PostsService } from '../../wp-services/posts.service';
+import { PostsService } from '../../shared/wp-services/posts.service';
 
 @Component({
   selector: 'app-single-post',

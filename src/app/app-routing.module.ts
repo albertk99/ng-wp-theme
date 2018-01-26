@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PostListComponent } from '../examples/post-list/post-list.component';
-import { SinglePostComponent } from '../examples/single-post/single-post.component';
+import { PostListComponent } from './examples/post-list/post-list.component';
+import { SinglePostComponent } from './examples/single-post/single-post.component';
 
 const routes: Routes = [
   {
@@ -21,4 +21,4 @@ const routes: Routes = [
   providers: []
 })
 
-export class RoutingModule { }
+export class AppRoutingModule { }
