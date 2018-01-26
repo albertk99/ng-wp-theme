@@ -1,4 +1,5 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Response } from '@angular/http/src/static_response';
 import { Observable } from 'rxjs/Observable';

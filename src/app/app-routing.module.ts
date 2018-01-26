@@ -1,7 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { PostListComponent } from './examples/post-list/post-list.component';
 import { SinglePostComponent } from './examples/single-post/single-post.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PostResolver } from './shared/wp-services/resolvers/post.resolver';
+import { PostsService } from './shared/wp-services/posts.service';
 
 const routes: Routes = [
   {
@@ -10,15 +14,26 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: ':slug',
-    component: SinglePostComponent
+    path: 'post/:slug',
+    component: SinglePostComponent,
+    resolve: {
+      post: PostResolver
+    }
+  },
+  {
+    path: '404',
+    component: PageNotFoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: '404'
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [PostsService, PostResolver]
 })
 
 export class AppRoutingModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http/src/static_response';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { PostsService } from '../../shared/wp-services/posts.service';
 
@@ -9,24 +9,25 @@ import { PostsService } from '../../shared/wp-services/posts.service';
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
   styleUrls: ['./single-post.component.scss'],
-  providers: [PostsService]
+  providers: []
 })
 
 export class SinglePostComponent implements OnInit {
   post: Response;
 
-  constructor(private postsService: PostsService, private route: ActivatedRoute) { }
+  constructor(
+    private postsService: PostsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    this.getPostBySlug('path');
-  }
+    const resolvedData = this.route.snapshot.data;
 
-  getPostBySlug(slug) {
-    const optionalParams = {
-      _embed: ''
-    };
-    this.route.paramMap
-      .switchMap((params: ParamMap) => this.postsService.getBySlug(params.get('slug'), optionalParams))
-      .subscribe((post: Response) => this.post = post[0]);
+    if (resolvedData.post.length > 0) {
+      this.post = resolvedData.post[0];
+    } else {
+      this.router.navigate(['404']);
+    }
   }
 }

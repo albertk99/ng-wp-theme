@@ -6,7 +6,7 @@ import { PostsService } from '../../shared/wp-services/posts.service';
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.scss'],
-  providers: [PostsService]
+  providers: []
 })
 
 export class PostListComponent implements OnInit {
