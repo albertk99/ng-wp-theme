@@ -3,8 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PostListComponent } from './examples/post-list/post-list.component';
 import { SinglePostComponent } from './examples/single-post/single-post.component';
+import { PageBaseComponent } from './page-base/page-base.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 import { PostResolver } from './shared/wp-services/resolvers/post.resolver';
+import { PageResolver } from './shared/wp-services/resolvers/page.resolver';
 
 const routes: Routes = [
   {
@@ -20,6 +23,13 @@ const routes: Routes = [
     }
   },
   {
+    path: ':slug',
+    component: PageBaseComponent,
+    resolve: {
+      page: PageResolver
+    }
+  },
+  {
     path: '404',
     component: PageNotFoundComponent
   },
@@ -32,7 +42,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [PostResolver]
+  providers: [PostResolver, PageResolver]
 })
 
 export class AppRoutingModule { }
