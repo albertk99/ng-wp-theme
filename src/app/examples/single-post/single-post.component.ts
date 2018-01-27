@@ -9,7 +9,7 @@ import { PostsService } from '../../shared/wp-services/posts.service';
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
   styleUrls: ['./single-post.component.scss'],
-  providers: []
+  providers: [PostsService]
 })
 
 export class SinglePostComponent implements OnInit {

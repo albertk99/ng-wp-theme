@@ -5,7 +5,6 @@ import { PostListComponent } from './examples/post-list/post-list.component';
 import { SinglePostComponent } from './examples/single-post/single-post.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PostResolver } from './shared/wp-services/resolvers/post.resolver';
-import { PostsService } from './shared/wp-services/posts.service';
 
 const routes: Routes = [
   {
@@ -33,7 +32,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [PostsService, PostResolver]
+  providers: [PostResolver]
 })
 
 export class AppRoutingModule { }

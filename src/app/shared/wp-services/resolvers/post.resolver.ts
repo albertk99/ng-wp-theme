@@ -6,7 +6,11 @@ import { PostsService } from '../posts.service';
 
 @Injectable()
 export class PostResolver implements Resolve<any> {
-  constructor(private postsService: PostsService) { }
+  private postsService: PostsService;
+
+  constructor(private http: HttpClient) {
+    this.postsService = new PostsService(http);
+  }
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
     const optionalParams = {
