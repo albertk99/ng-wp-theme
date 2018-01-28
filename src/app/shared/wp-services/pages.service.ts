@@ -4,10 +4,10 @@ import { Response } from '@angular/http/src/static_response';
 import { Observable } from 'rxjs/Observable';
 
 import { WPServicesBase } from './wp-services-base';
-import { IPages } from './interfaces/IPages.interface';
+import { Pages } from './interfaces/pages.interface';
 
 @Injectable()
-export class PagesService extends WPServicesBase implements IPages {
+export class PagesService extends WPServicesBase implements Pages {
   constructor(http: HttpClient) {
     super(http);
   }
