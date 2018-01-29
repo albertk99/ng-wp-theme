@@ -7,7 +7,7 @@ import { PageTemplate } from '../page-template';
   styleUrls: ['./example-template.component.scss']
 })
 export class ExampleTemplateComponent extends PageTemplate {
-  static className = 'ExampleTemplateComponent';
+  static readonly className = 'ExampleTemplateComponent';
   @Input() page: Response;
 
   constructor() {

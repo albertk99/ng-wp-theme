@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { BaseUrlInterceptor } from './shared/http/base-url.interceptor';
 import { AppRoutingModule } from './app-routing.module';
+import { WPServicesModule } from './shared/wp-services/wp-services.module';
+import { RootUrlInterceptor } from './shared/root-url-interceptor';
 
 import { AppComponent } from './app.component';
 import { PostListComponent } from './examples/post-list/post-list.component';
@@ -28,18 +29,19 @@ import { PageTemplateDirective } from './page-base/directives/page-template.dire
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    WPServicesModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: BaseUrlInterceptor,
+      useClass: RootUrlInterceptor,
       multi: true
     }
   ],
-  entryComponents: [
+  entryComponents: [// @todo move to page module
     DefaultComponent,
-    ExampleTemplateComponent // @todo move to page module
+    ExampleTemplateComponent
   ],
   bootstrap: [AppComponent]
 })

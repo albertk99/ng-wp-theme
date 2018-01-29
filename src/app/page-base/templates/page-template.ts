@@ -1,6 +1,6 @@
-import { Type, Input } from '@angular/core';
+import { Input } from '@angular/core';
 
 export class PageTemplate {
-  static className: string;
-  page: Response;
+  static readonly className: string;
+  @Input() page: Response;
 }

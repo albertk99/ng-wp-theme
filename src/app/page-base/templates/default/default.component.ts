@@ -7,7 +7,7 @@ import { PageTemplate } from '../page-template';
   styleUrls: ['./default.component.scss']
 })
 export class DefaultComponent extends PageTemplate {
-  static className = 'DefaultComponent';
+  static readonly className = 'DefaultComponent';
   @Input() page: Response;
 
   constructor() {

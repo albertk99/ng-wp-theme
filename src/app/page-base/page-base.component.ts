@@ -11,7 +11,7 @@ import { ExampleTemplateComponent } from './templates/example-template/example-t
   styleUrls: ['./page-base.component.scss']
 })
 export class PageBaseComponent implements OnInit {
-  private static acfTemplateSelectorFieldName = 'template';
+  private static readonly acfTemplateSelectorFieldName = 'template';
   private page: Response;
   private acf: Response;
   @ViewChild(PageTemplateDirective) templateDirective: PageTemplateDirective;
