@@ -4,7 +4,8 @@ Wordpress starter theme with Angular 5 app integration.
 
 This project is prepared to use with Advanced Custom Fields plugin (PRO version is also supported). It provides:
 - basic theme configuration
-- services available by default in Wordpress and shared by ACF REST API - structure of components to work with wordpress templates
+- services available by default in Wordpress and shared by ACF REST API
+- structure of components to work with wordpress templates basing on idea of custom selector field
 
 ## WP Setup
 
@@ -41,3 +42,8 @@ Run `ng generate component component-name` to generate a new component. You can 
 ### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## Contributions
+
+Pull requests are welcome
