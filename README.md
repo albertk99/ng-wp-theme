@@ -17,7 +17,7 @@ This project is prepared to use with Advanced Custom Fields plugin (PRO version 
 
 3. Before running app you need to create `src/config.json` file basing on `src/config.json.dist`.
 
-4. Wordpress pages needs to have select field to choose template. Name of that field is configurable on `src/app/page-base/page-base.component.ts` as `acfTemplateSelectorFieldName` property. Then you can create templates as components in path: `src/app/page-base/templates/` that will be loaded basing on selected template name in dashboard. Nice!
+4. Wordpress pages needs to have select field to choose template. ACF allows you to setup fields depends on that selector. Name of that field is configurable on `src/app/page-base/page-base.component.ts` as `acfTemplateSelectorFieldName` property. Then you can create templates as components in path: `src/app/page-base/templates/`. There will be loaded basing on selected template name in dashboard. Nice!
 
 ### Development server
 
