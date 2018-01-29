@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { WPServicesModule } from './shared/wp-services/wp-services.module';
 import { RootUrlInterceptor } from './shared/root-url-interceptor';
 
 import { AppComponent } from './app.component';
@@ -29,8 +28,7 @@ import { PageTemplateDirective } from './page-base/directives/page-template.dire
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
-    WPServicesModule
+    AppRoutingModule
   ],
   providers: [
     {

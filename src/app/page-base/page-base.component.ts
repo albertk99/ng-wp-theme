@@ -13,7 +13,7 @@ import { ExampleTemplateComponent } from './templates/example-template/example-t
 export class PageBaseComponent implements OnInit {
   private static readonly acfTemplateSelectorFieldName = 'template';
   private page: Response;
-  private acf: Response;
+  private acf: any;
   @ViewChild(PageTemplateDirective) templateDirective: PageTemplateDirective;
 
   constructor(
@@ -27,8 +27,7 @@ export class PageBaseComponent implements OnInit {
 
     if (resolvedData.page.length > 0) {
       this.page = resolvedData.page[0];
-      const pageTemplate = 'ExampleTemplateComponent'; // @todo page template should be received from api
-                                                       // (query using acf and acfTemplateSelectorFieldName field)
+      const pageTemplate = resolvedData.page[0].acf.template;
 
       this.loadTemplate(pageTemplate);
     } else {
