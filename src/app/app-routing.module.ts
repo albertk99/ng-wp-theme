@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PostListComponent } from './examples/post-list/post-list.component';
-import { SinglePostComponent } from './examples/single-post/single-post.component';
-import { PageBaseComponent } from './page-base/page-base.component';
+import { PostListComponent } from './posts/post-list/post-list.component';
+import { SinglePostComponent } from './posts/single-post/single-post.component';
+import { PageBaseComponent } from './pages/page-base.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { PostResolver } from './shared/wp-services/resolvers/post.resolver';
