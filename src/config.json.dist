@@ -1,4 +1,7 @@
 {
   "wpAPIBaseUrl": "http://{YOUR_DOMAIN_HERE}/wp-json/wp/v2/",
-  "acfAPIBaseUrl": "http://{YOUR_DOMAIN_HERE}/wp-json/acf/v3/"
+  "acfAPIBaseUrl": "http://{YOUR_DOMAIN_HERE}/wp-json/acf/v3/",
+  "pageTemplates": [
+    "ExampleTemplateComponent"
+  ]
 }

@@ -11,7 +11,6 @@ import { ExampleTemplateComponent } from './templates/example-template/example-t
   styleUrls: ['./page-base.component.scss']
 })
 export class PageBaseComponent implements OnInit {
-  private static readonly acfTemplateSelectorFieldName = 'template';
   private page: Response;
   private acf: any;
   @ViewChild(PageTemplateDirective) templateDirective: PageTemplateDirective;
@@ -27,7 +26,7 @@ export class PageBaseComponent implements OnInit {
 
     if (resolvedData.page.length > 0) {
       this.page = resolvedData.page[0];
-      const pageTemplate = resolvedData.page[0].acf.template;
+      const pageTemplate = resolvedData.page[0].template ? resolvedData.page[0].template : 'DefaultComponent';
 
       this.loadTemplate(pageTemplate);
     } else {
@@ -36,6 +35,7 @@ export class PageBaseComponent implements OnInit {
   }
 
   loadTemplate(templateClassName) {
+    // @todo check if templates could be loaded by class name (possible bugs with minifying)
     const factories = Array.from(this.componentFactoryResolver['_factories'].keys());
     const factoryClass = <Type<any>>factories.find((x: any) => x.className === templateClassName);
 

@@ -15,6 +15,24 @@ class ThemeConfigurator
         add_action('init', array($this, 'registerMenus'));
         add_action('admin_menu', array($this, 'hideMenuElements'));
         add_action('init', array($this, 'initThemeSettings'));
+        $this->initCustomTemplates();
+    }
+
+    private function initCustomTemplates()
+    {
+        $pt = PageTemplater::get_instance();
+        $pt->templates = $this->getTemplatesFromConfig();
+    }
+
+    private function getTemplatesFromConfig()
+    {
+        $config = json_decode(file_get_contents(__DIR__ . '/../src/config.json'), true);
+        $templates = array();
+        foreach ($config['pageTemplates'] as $key => $value) {
+            $templates[$value] = $value; // @todo check if is .php suffix required?
+        }
+
+        return $templates;
     }
 
     public function hideMenuElements()
