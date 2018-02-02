@@ -15,10 +15,10 @@ class ThemeConfigurator
         add_action('init', array($this, 'registerMenus'));
         add_action('admin_menu', array($this, 'hideMenuElements'));
         add_action('init', array($this, 'initThemeSettings'));
-        $this->initCustomTemplates();
+        $this->initPageTemplater();
     }
 
-    private function initCustomTemplates()
+    private function initPageTemplater()
     {
         $pt = PageTemplater::get_instance();
         $pt->templates = $this->getTemplatesFromConfig();

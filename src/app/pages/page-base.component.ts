@@ -1,9 +1,7 @@
 import { Component, OnInit, ComponentFactoryResolver, ViewChild, Type } from '@angular/core';
-import { Response } from '@angular/http/src/static_response';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { PageTemplateDirective } from './directives/page-template.directive';
-import { ExampleTemplateComponent } from './templates/example-template/example-template.component';
 
 @Component({
   selector: 'app-page-base',
@@ -11,8 +9,7 @@ import { ExampleTemplateComponent } from './templates/example-template/example-t
   styleUrls: ['./page-base.component.scss']
 })
 export class PageBaseComponent implements OnInit {
-  private page: Response;
-  private acf: any;
+  private page: any;
   @ViewChild(PageTemplateDirective) templateDirective: PageTemplateDirective;
 
   constructor(
@@ -35,7 +32,6 @@ export class PageBaseComponent implements OnInit {
   }
 
   loadTemplate(templateClassName) {
-    // @todo check if templates could be loaded by class name (possible bugs with minifying)
     const factories = Array.from(this.componentFactoryResolver['_factories'].keys());
     const factoryClass = <Type<any>>factories.find((x: any) => x.className === templateClassName);
 

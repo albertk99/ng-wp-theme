@@ -8,7 +8,7 @@ import { PageTemplate } from '../page-template';
 })
 export class DefaultComponent extends PageTemplate {
   static readonly className = 'DefaultComponent';
-  @Input() page: Response;
+  @Input() page: any;
 
   constructor() {
     super();
