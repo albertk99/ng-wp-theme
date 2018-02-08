@@ -1,7 +1,9 @@
 import { Component, OnInit, ComponentFactoryResolver, ViewChild, Type } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Meta } from '@angular/platform-browser/src/browser/meta';
 
 import { PageTemplateDirective } from './directives/page-template.directive';
+import { MetaTagsCreator } from '../shared/meta-tags-creator';
 
 @Component({
   selector: 'app-page-base',
@@ -15,7 +17,8 @@ export class PageBaseComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private metaTagsCreator: MetaTagsCreator
   ) { }
 
   ngOnInit() {
@@ -23,11 +26,18 @@ export class PageBaseComponent implements OnInit {
 
     if (resolvedData.page.length > 0) {
       this.page = resolvedData.page[0];
-      const pageTemplate = resolvedData.page[0].template ? resolvedData.page[0].template : 'DefaultComponent';
+      const pageTemplate = this.page.template !== '' ? this.page.template : 'DefaultComponent';
 
+      this.addYoastMeta();
       this.loadTemplate(pageTemplate);
     } else {
       this.router.navigate(['404']);
+    }
+  }
+
+  addYoastMeta() {
+    if (typeof this.page.yoast_meta !== 'undefined') {
+      this.metaTagsCreator.initMetaTags(this.page.yoast_meta);
     }
   }
 

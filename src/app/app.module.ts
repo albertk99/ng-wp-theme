@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RootUrlInterceptor } from './shared/root-url-interceptor';
+import { MetaTagsCreator } from './shared/meta-tags-creator';
 
 import { AppComponent } from './app.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
@@ -35,7 +36,8 @@ import { PageTemplateDirective } from './pages/directives/page-template.directiv
       provide: HTTP_INTERCEPTORS,
       useClass: RootUrlInterceptor,
       multi: true
-    }
+    },
+    MetaTagsCreator
   ],
   entryComponents: [// @todo move to page module
     DefaultComponent,
