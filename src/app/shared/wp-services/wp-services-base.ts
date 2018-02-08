@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 declare function require(url: string);
 const config = require('../../../config.json');
 
-export class WPServicesBase {
+export abstract class WPServicesBase {
   constructor(public http: HttpClient) { }
 
   objToHttpParams(paramsObj) {

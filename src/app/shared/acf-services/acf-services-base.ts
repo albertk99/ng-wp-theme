@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 declare function require(url: string);
 const config = require('../../../config.json');
 
-export class ACFServicesBase {
+export abstract class ACFServicesBase {
   constructor(public http: HttpClient) { }
 
   objToHttpParams(paramsObj) {
