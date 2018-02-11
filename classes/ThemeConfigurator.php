@@ -100,7 +100,7 @@ class ThemeConfigurator
             ),
             (object) array(
                 'property' => 'og:type',
-                'content' => is_single() ? 'article' : 'website',
+                'content' => get_post_type($post->ID) === 'post' ? 'article' : 'website',
             ),
             (object) array(
                 'property' => 'og:title',
