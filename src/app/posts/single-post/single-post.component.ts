@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Response } from '@angular/http/src/static_response';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { PostsService } from '../../shared/wp-services/posts.service';
+import { MetaInitializer } from '../../shared/yoast-seo/meta-initializer.interface';
+import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
 
 @Component({
   selector: 'app-single-post',
@@ -10,13 +12,14 @@ import { PostsService } from '../../shared/wp-services/posts.service';
   providers: [PostsService]
 })
 
-export class SinglePostComponent implements OnInit {
-  post: Response;
+export class SinglePostComponent implements OnInit, MetaInitializer {
+  post: any;
 
   constructor(
     private postsService: PostsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private metaTagsCreator: MetaTagsCreator
   ) { }
 
   ngOnInit() {
@@ -24,8 +27,15 @@ export class SinglePostComponent implements OnInit {
 
     if (resolvedData.post.length > 0) {
       this.post = resolvedData.post[0];
+      this.initMetaTags();
     } else {
       this.router.navigate(['404']);
+    }
+  }
+
+  initMetaTags() {
+    if (typeof this.post.yoast_meta !== 'undefined') {
+      this.metaTagsCreator.createMetaTags(this.post.yoast_meta);
     }
   }
 }

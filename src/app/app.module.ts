@@ -4,7 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RootUrlInterceptor } from './shared/root-url-interceptor';
-import { MetaTagsCreator } from './shared/meta-tags-creator';
+import { MetaTagsCreator } from './shared/yoast-seo/meta-tags-creator';
 
 import { AppComponent } from './app.component';
 import { PostListComponent } from './posts/post-list/post-list.component';

@@ -91,6 +91,10 @@ class ThemeConfigurator
                 'content' => get_post_meta($post->ID, '_yoast_wpseo_metadesc', true),
             ),
             (object) array(
+                'name' => 'keywords',
+                'content' => get_post_meta($post->ID, '_yoast_wpseo_metakeywords', true),
+            ),
+            (object) array(
                 'property' => 'og:locale',
                 'content' => get_locale(),
             ),
@@ -129,10 +133,6 @@ class ThemeConfigurator
             (object) array(
                 'name' => 'twitter:image',
                 'content' => get_post_meta($post->ID, '_yoast_wpseo_twitter-image', true),
-            ),
-            (object) array(
-                'name' => 'keywords',
-                'content' => get_post_meta($post->ID, '_yoast_wpseo_metakeywords', true),
             )
         );
         /**

@@ -5,7 +5,11 @@ import { Meta } from '@angular/platform-browser';
 export class MetaTagsCreator {
   constructor(private meta: Meta) {}
 
-  initMetaTags(metaTags) {
-    this.meta.addTags(metaTags);
+  private removeEmptyTagsFilter(el) {
+    return el.content !== '';
+  }
+
+  createMetaTags(metaTags: any[]) {
+    this.meta.addTags(metaTags.filter(this.removeEmptyTagsFilter));
   }
 }

@@ -1,16 +1,16 @@
 import { Component, OnInit, ComponentFactoryResolver, ViewChild, Type } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Meta } from '@angular/platform-browser/src/browser/meta';
 
 import { PageTemplateDirective } from './directives/page-template.directive';
-import { MetaTagsCreator } from '../shared/meta-tags-creator';
+import { MetaInitializer } from '../shared/yoast-seo/meta-initializer.interface';
+import { MetaTagsCreator } from '../shared/yoast-seo/meta-tags-creator';
 
 @Component({
   selector: 'app-page-base',
   templateUrl: './page-base.component.html',
   styleUrls: ['./page-base.component.scss']
 })
-export class PageBaseComponent implements OnInit {
+export class PageBaseComponent implements OnInit, MetaInitializer {
   private page: any;
   @ViewChild(PageTemplateDirective) templateDirective: PageTemplateDirective;
 
@@ -28,16 +28,16 @@ export class PageBaseComponent implements OnInit {
       this.page = resolvedData.page[0];
       const pageTemplate = this.page.template !== '' ? this.page.template : 'DefaultComponent';
 
-      this.addYoastMeta();
+      this.initMetaTags();
       this.loadTemplate(pageTemplate);
     } else {
       this.router.navigate(['404']);
     }
   }
 
-  addYoastMeta() {
+  initMetaTags() {
     if (typeof this.page.yoast_meta !== 'undefined') {
-      this.metaTagsCreator.initMetaTags(this.page.yoast_meta);
+      this.metaTagsCreator.createMetaTags(this.page.yoast_meta);
     }
   }
 
