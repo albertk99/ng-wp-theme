@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
 import { PageBaseComponent } from './pages/page-base.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { Page404Component } from './pages/templates/page-404/page-404.component';
 
 import { PostResolver } from './shared/wp-services/resolvers/post.resolver';
 import { PageResolver } from './shared/wp-services/resolvers/page.resolver';
@@ -30,12 +30,8 @@ const routes: Routes = [
     }
   },
   {
-    path: '404',
-    component: PageNotFoundComponent
-  },
-  {
     path: '**',
-    redirectTo: '404'
+    redirectTo: 'error-404'
   }
 ];
 

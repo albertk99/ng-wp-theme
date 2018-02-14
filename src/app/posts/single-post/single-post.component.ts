@@ -29,7 +29,7 @@ export class SinglePostComponent implements OnInit, MetaInitializer {
       this.post = resolvedData.post[0];
       this.initMetaTags();
     } else {
-      this.router.navigate(['404']);
+      this.router.navigate(['error-404']);
     }
   }
 

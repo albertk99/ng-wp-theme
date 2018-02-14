@@ -31,7 +31,7 @@ export class PageBaseComponent implements OnInit, MetaInitializer {
       this.initMetaTags();
       this.loadTemplate(pageTemplate);
     } else {
-      this.router.navigate(['404']);
+      this.router.navigate(['error-404']);
     }
   }
 

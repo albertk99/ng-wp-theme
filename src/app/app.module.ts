@@ -9,10 +9,11 @@ import { MetaTagsCreator } from './shared/yoast-seo/meta-tags-creator';
 import { AppComponent } from './app.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PageBaseComponent } from './pages/page-base.component';
 import { DefaultComponent } from './pages/templates/default/default.component';
+import { Page404Component } from './pages/templates/page-404/page-404.component';
 import { ExampleTemplateComponent } from './pages/templates/example-template/example-template.component';
+
 import { PageTemplateDirective } from './pages/directives/page-template.directive';
 
 @NgModule({
@@ -20,9 +21,9 @@ import { PageTemplateDirective } from './pages/directives/page-template.directiv
     AppComponent,
     PostListComponent,
     SinglePostComponent,
-    PageNotFoundComponent,
     PageBaseComponent,
     DefaultComponent,
+    Page404Component,
     ExampleTemplateComponent,
     PageTemplateDirective
   ],
@@ -41,6 +42,7 @@ import { PageTemplateDirective } from './pages/directives/page-template.directiv
   ],
   entryComponents: [// @todo move to page module
     DefaultComponent,
+    Page404Component,
     ExampleTemplateComponent
   ],
   bootstrap: [AppComponent]
