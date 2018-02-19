@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Response } from '@angular/http/src/static_response';
 import { Observable } from 'rxjs/Observable';
 
 import { WPServicesBase } from './wp-services-base';
@@ -12,11 +11,11 @@ export class PostsService extends WPServicesBase implements Posts {
     super(http);
   }
 
-  getList(params: Object = {}): Observable<Response> {
-    return this.http.get<Response>('posts', { params: super.objToHttpParams(params) });
+  getList(params: Object = {}): Observable<any> {
+    return this.http.get<any>('posts', { params: super.objToHttpParams(params) });
   }
 
-  getBySlug(slug: String, params: Object = {}): Observable<Response> {
-    return this.http.get<Response>(`posts?slug=${slug}`, { params: super.objToHttpParams(params) });
+  getBySlug(slug: String, params: Object = {}): Observable<any> {
+    return this.http.get<any>(`posts?slug=${slug}`, { params: super.objToHttpParams(params) });
   }
 }

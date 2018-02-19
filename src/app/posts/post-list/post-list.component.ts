@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Response } from '@angular/http/src/static_response';
 import { PostsService } from '../../shared/wp-services/posts.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { PostsService } from '../../shared/wp-services/posts.service';
 })
 
 export class PostListComponent implements OnInit {
-  posts: Response;
+  posts: any[];
 
   constructor(private postsService: PostsService) { }
 
@@ -26,7 +25,7 @@ export class PostListComponent implements OnInit {
 
     this.postsService
       .getList(params)
-      .subscribe((posts: Response) => {
+      .subscribe((posts: any[]) => {
         this.posts = posts;
       });
   }

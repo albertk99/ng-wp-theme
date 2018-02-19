@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PostListComponent } from './posts/post-list/post-list.component';
+import { CategoryComponent } from './posts/category/category.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
 import { PageBaseComponent } from './pages/page-base.component';
 import { Page404Component } from './pages/templates/page-404/page-404.component';
 
 import { PostResolver } from './shared/wp-services/resolvers/post.resolver';
 import { PageResolver } from './shared/wp-services/resolvers/page.resolver';
+import { CategoryResolver } from './shared/wp-services/resolvers/category.resolver';
 
 const routes: Routes = [
   {
@@ -21,6 +23,31 @@ const routes: Routes = [
     resolve: {
       post: PostResolver
     }
+  },
+  {
+    path: 'category',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '../error-404'
+      },
+      {
+        path: ':cat-slug',
+        component: CategoryComponent,
+        resolve: {
+          category: CategoryResolver
+        }
+      },
+      {
+        path: ':parent-cat-slug/:cat-slug',
+        component: CategoryComponent,
+        resolve: {
+          category: CategoryResolver
+        }
+      }
+      // you can create here as many nested routes here as you want to support
+    ]
   },
   {
     path: ':slug',
@@ -38,7 +65,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [PostResolver, PageResolver]
+  providers: [PostResolver, PageResolver, CategoryResolver]
 })
 
 export class AppRoutingModule { }

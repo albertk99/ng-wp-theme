@@ -8,6 +8,7 @@ import { MetaTagsCreator } from './shared/yoast-seo/meta-tags-creator';
 
 import { AppComponent } from './app.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
+import { CategoryComponent } from './posts/category/category.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
 import { PageBaseComponent } from './pages/page-base.component';
 import { DefaultComponent } from './pages/templates/default/default.component';
@@ -20,6 +21,7 @@ import { PageTemplateDirective } from './pages/directives/page-template.directiv
   declarations: [
     AppComponent,
     PostListComponent,
+    CategoryComponent,
     SinglePostComponent,
     PageBaseComponent,
     DefaultComponent,
