@@ -4,7 +4,8 @@ class YoastMetaTagsLoader {
         if (class_exists('WPSEO_Frontend')) {
             add_filter('rest_prepare_post', array($this, 'addPostFields'), 10, 3);
             add_filter('rest_prepare_page', array($this, 'addPostFields'), 10, 3);
-            add_filter('rest_prepare_category', array($this, 'addCategoryFields'), 10, 3);
+            add_filter('rest_prepare_category', array($this, 'addTermFields'), 10, 3);
+            add_filter('rest_prepare_post_tag', array($this, 'addTermFields'), 10, 3);
         }
     }
 
@@ -76,16 +77,16 @@ class YoastMetaTagsLoader {
         return $data;
     }
 
-    public function addCategoryFields($data, $category, $context)
+    public function addTermFields($data, $term, $context)
     {
         $yoastMeta = array(
             (object) array(
                 'name' => 'description',
-                'content' => get_term_meta($category->term_id, '_yoast_wpseo_metadesc', true),
+                'content' => get_term_meta($term->term_id, '_yoast_wpseo_metadesc', true),
             ),
             (object) array(
                 'name' => 'keywords',
-                'content' => get_term_meta($category->term_id, '_yoast_wpseo_metakeywords', true),
+                'content' => get_term_meta($term->term_id, '_yoast_wpseo_metakeywords', true),
             ),
             (object) array(
                 'property' => 'og:locale',
@@ -97,15 +98,15 @@ class YoastMetaTagsLoader {
             ),
             (object) array(
                 'property' => 'og:title',
-                'content' => get_term_meta($category->term_id, '_yoast_wpseo_opengraph-title', true),
+                'content' => get_term_meta($term->term_id, '_yoast_wpseo_opengraph-title', true),
             ),
             (object) array(
                 'property' => 'og:description',
-                'content' => get_term_meta($category->term_id, '_yoast_wpseo_opengraph-description', true),
+                'content' => get_term_meta($term->term_id, '_yoast_wpseo_opengraph-description', true),
             ),
             (object) array(
                 'property' => 'og:url',
-                'content' => get_category_link($category->term_id),
+                'content' => get_category_link($term->term_id),
             ),
             (object) array(
                 'property' => 'og:site_name',
@@ -113,19 +114,19 @@ class YoastMetaTagsLoader {
             ),
             (object) array(
                 'property' => 'og:image',
-                'content' => get_term_meta($category->term_id, '_yoast_wpseo_opengraph-image', true),
+                'content' => get_term_meta($term->term_id, '_yoast_wpseo_opengraph-image', true),
             ),
             (object) array(
                 'name' => 'twitter:title',
-                'content' => get_term_meta($category->term_id, '_yoast_wpseo_twitter-title', true),
+                'content' => get_term_meta($term->term_id, '_yoast_wpseo_twitter-title', true),
             ),
             (object) array(
                 'name' => 'twitter:description',
-                'content' => get_term_meta($category->term_id, '_yoast_wpseo_twitter-description', true),
+                'content' => get_term_meta($term->term_id, '_yoast_wpseo_twitter-description', true),
             ),
             (object) array(
                 'name' => 'twitter:image',
-                'content' => get_term_meta($category->term_id, '_yoast_wpseo_twitter-image', true),
+                'content' => get_term_meta($term->term_id, '_yoast_wpseo_twitter-image', true),
             )
         );
         /**

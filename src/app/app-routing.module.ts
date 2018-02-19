@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { CategoryComponent } from './posts/category/category.component';
+import { TagComponent } from './posts/tag/tag.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
 import { PageBaseComponent } from './pages/page-base.component';
 import { Page404Component } from './pages/templates/page-404/page-404.component';
@@ -10,6 +11,7 @@ import { Page404Component } from './pages/templates/page-404/page-404.component'
 import { PostResolver } from './shared/wp-services/resolvers/post.resolver';
 import { PageResolver } from './shared/wp-services/resolvers/page.resolver';
 import { CategoryResolver } from './shared/wp-services/resolvers/category.resolver';
+import { TagResolver } from './shared/wp-services/resolvers/tag.resolver';
 
 const routes: Routes = [
   {
@@ -50,6 +52,13 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'tag/:slug',
+    component: TagComponent,
+    resolve: {
+      tag: TagResolver
+    }
+  },
+  {
     path: ':slug',
     component: PageBaseComponent,
     resolve: {
@@ -65,7 +74,12 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [PostResolver, PageResolver, CategoryResolver]
+  providers: [
+    PostResolver,
+    PageResolver,
+    CategoryResolver,
+    TagResolver
+  ]
 })
 
 export class AppRoutingModule { }

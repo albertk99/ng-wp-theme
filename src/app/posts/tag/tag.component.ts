@@ -5,12 +5,12 @@ import { MetaInitializer } from '../../shared/yoast-seo/meta-initializer.interfa
 import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  selector: 'app-tag',
+  templateUrl: './tag.component.html',
+  styleUrls: ['./tag.component.scss']
 })
-export class CategoryComponent implements OnInit, MetaInitializer {
-  public category: any;
+export class TagComponent implements OnInit, MetaInitializer {
+  public tag: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,8 +21,8 @@ export class CategoryComponent implements OnInit, MetaInitializer {
   ngOnInit() {
     const resolvedData = this.route.snapshot.data;
 
-    if (resolvedData.category.length > 0) {
-      this.category = resolvedData.category[0];
+    if (resolvedData.tag.length > 0) {
+      this.tag = resolvedData.tag[0];
       this.initMetaTags();
     } else {
       this.router.navigate(['error-404']);
@@ -30,8 +30,8 @@ export class CategoryComponent implements OnInit, MetaInitializer {
   }
 
   initMetaTags() {
-    if (typeof this.category.yoast_meta !== 'undefined') {
-      this.metaTagsCreator.createMetaTags(this.category.yoast_meta);
+    if (typeof this.tag.yoast_meta !== 'undefined') {
+      this.metaTagsCreator.createMetaTags(this.tag.yoast_meta);
     }
   }
 }
