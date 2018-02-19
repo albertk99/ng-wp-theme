@@ -2,18 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CategoriesService } from '../../shared/wp-services/categories.service';
+import { MetaInitializer } from '../../shared/yoast-seo/meta-initializer.interface';
+import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit {
-  category: any;
+export class CategoryComponent implements OnInit, MetaInitializer {
+  public category: any;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private metaTagsCreator: MetaTagsCreator
   ) { }
 
   ngOnInit() {
@@ -21,8 +24,15 @@ export class CategoryComponent implements OnInit {
 
     if (resolvedData.category.length > 0) {
       this.category = resolvedData.category[0];
+      this.initMetaTags();
     } else {
       this.router.navigate(['error-404']);
+    }
+  }
+
+  initMetaTags() {
+    if (typeof this.category.yoast_meta !== 'undefined') {
+      this.metaTagsCreator.createMetaTags(this.category.yoast_meta);
     }
   }
 }
