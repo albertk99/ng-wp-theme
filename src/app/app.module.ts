@@ -14,6 +14,7 @@ import { SinglePostComponent } from './posts/single-post/single-post.component';
 
 import { PageBaseComponent } from './pages/page-base.component';
 import { PageTemplateDirective } from './pages/directives/page-template.directive';
+import { SafePipe } from './shared/pipes/safe.pipe';
 import { DefaultComponent } from './pages/templates/default/default.component';
 import { Page404Component } from './pages/templates/page-404/page-404.component';
 import { ExampleTemplateComponent } from './pages/templates/example-template/example-template.component';
@@ -21,6 +22,8 @@ import { ExampleTemplateComponent } from './pages/templates/example-template/exa
 @NgModule({
   declarations: [
     AppComponent,
+    PageTemplateDirective,
+    SafePipe,
     PostListComponent,
     CategoryComponent,
     TagComponent,
@@ -28,8 +31,7 @@ import { ExampleTemplateComponent } from './pages/templates/example-template/exa
     PageBaseComponent,
     DefaultComponent,
     Page404Component,
-    ExampleTemplateComponent,
-    PageTemplateDirective
+    ExampleTemplateComponent
   ],
   imports: [
     BrowserModule,
