@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
+    "start": "ng serve --no-delete-output-path",
+    "build": "ng build --prod --deploy-url='/wp-content/themes/ng-theme/dist'",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

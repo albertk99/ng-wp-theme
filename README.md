@@ -21,11 +21,11 @@ This project is prepared to use with Advanced Custom Fields plugin (PRO version 
 
 ### Development server
 
-Run `ng serve` for a dev server - `http://localhost:4200/`.
+Run `npm run start` for a dev server - `http://localhost:4200/`.
 
 ### Build
 
-Run `ng build --prod --deploy-url="/wp-content/themes/{YOUR_THEME_NAME}/dist"` to build the project. 
+Run `npm run build"` to build the project. 
 
 ### Running unit tests
 
