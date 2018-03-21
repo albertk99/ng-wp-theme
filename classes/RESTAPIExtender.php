@@ -24,12 +24,13 @@ class RESTAPIExtender extends WP_REST_Controller {
     function sendMail($request)
     {
         $response = (object) array();
+        $params = $request->get_params();
 
-        if (isset($_POST['name']) && isset($_POST['recipientEmail']) && isset($_POST['message'])) {
+        if (isset($params['name']) && isset($params['recipientEmail']) && isset($params['message'])) {
             $emailData = (object) array();
-            $emailData->name = sanitize_text_field($_POST['name']);
-            $emailData->email = sanitize_email($_POST['recipientEmail']);
-            $emailData->message = sanitize_text_field($_POST['message']);
+            $emailData->name = sanitize_text_field($params['name']);
+            $emailData->email = sanitize_email($params['recipientEmail']);
+            $emailData->message = sanitize_text_field($params['message']);
 
             $to = get_option('admin_email');
             $subject = 'Message from contact form on site ' . bloginfo('site_url');

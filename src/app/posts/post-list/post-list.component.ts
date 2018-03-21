@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { PostsService } from '../../shared/wp-services/posts.service';
 
 @Component({

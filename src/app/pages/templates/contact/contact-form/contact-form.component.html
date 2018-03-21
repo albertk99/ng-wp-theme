@@ -1,4 +1,4 @@
-<form [hidden]="submitted" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+<form [hidden]="messageSent" (ngSubmit)="onSubmit()" #contactForm="ngForm">
   <fieldset>
     <legend>Contact form</legend>
     <label>
@@ -13,12 +13,13 @@
       Message: <textarea [(ngModel)]="model.message" name="message" required #message="ngModel"></textarea>
     </label><br><br>
     <div [hidden]="message.valid || message.pristine" style="color: red">Message is required</div>
-    <button type="submit" [disabled]="!contactForm.form.valid">Submit</button>
+    <button type="submit" [disabled]="!contactForm.form.valid || processed">Submit</button>
   </fieldset>
 </form>
-<p [hidden]="!submitted">Message sent!</p>
+<p [hidden]="!processed">Sending...</p>
+<p [hidden]="!messageSent">Message sent!</p>
 <p [hidden]="!error">Message was not sent!</p>
-data:
+<p>data:</p>
 <pre>
    {{ diagnostic }}
 </pre>
