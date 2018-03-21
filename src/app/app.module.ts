@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -15,9 +16,20 @@ import { SinglePostComponent } from './posts/single-post/single-post.component';
 import { PageBaseComponent } from './pages/page-base.component';
 import { PageTemplateDirective } from './pages/directives/page-template.directive';
 import { SafePipe } from './shared/pipes/safe.pipe';
+
+// template components
 import { DefaultComponent } from './pages/templates/default/default.component';
 import { Page404Component } from './pages/templates/page-404/page-404.component';
 import { ExampleTemplateComponent } from './pages/templates/example-template/example-template.component';
+import { ContactComponent } from './pages/templates/contact/contact.component';
+import { ContactFormComponent } from './pages/templates/contact/contact-form/contact-form.component';
+
+const templateComponents = [
+  DefaultComponent,
+  Page404Component,
+  ExampleTemplateComponent,
+  ContactComponent
+];
 
 @NgModule({
   declarations: [
@@ -29,14 +41,14 @@ import { ExampleTemplateComponent } from './pages/templates/example-template/exa
     TagComponent,
     SinglePostComponent,
     PageBaseComponent,
-    DefaultComponent,
-    Page404Component,
-    ExampleTemplateComponent
+    ...templateComponents,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     {
@@ -47,9 +59,7 @@ import { ExampleTemplateComponent } from './pages/templates/example-template/exa
     MetaTagsCreator
   ],
   entryComponents: [
-    DefaultComponent,
-    Page404Component,
-    ExampleTemplateComponent
+    ...templateComponents
   ],
   bootstrap: [AppComponent]
 })

@@ -17,6 +17,12 @@ class ThemeConfigurator
         add_action('init', array($this, 'initThemeSettings'));
         $this->initPageTemplater();
         $this->initYoastMeta();
+        $this->initAPIExtender();
+    }
+
+    private function initAPIExtender() {
+        $rae = new RESTAPIExtender();
+        $rae->registerRoutes();
     }
 
     private function initYoastMeta() {
