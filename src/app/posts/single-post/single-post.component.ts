@@ -1,10 +1,18 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ComponentFactoryResolver, Injector, ApplicationRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { PostsService } from '../../shared/wp-services/posts.service';
 import { MetaInitializer } from '../../shared/yoast-seo/meta-initializer.interface';
 import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
-import { Image, PlainGalleryConfig, PlainGalleryStrategy, LineLayout, DescriptionStrategy, Description, GridLayout } from 'angular-modal-gallery';
+import {
+  Image,
+  PlainGalleryConfig,
+  PlainGalleryStrategy,
+  LineLayout,
+  DescriptionStrategy,
+  Description,
+  GridLayout,
+  ɵc as ModalGalleryComponent } from 'angular-modal-gallery';
 
 @Component({
   selector: 'app-single-post',
@@ -15,9 +23,7 @@ import { Image, PlainGalleryConfig, PlainGalleryStrategy, LineLayout, Descriptio
 
 export class SinglePostComponent implements OnInit, AfterViewInit, MetaInitializer {
   post: any;
-  images: Image[];
-  galleryConfig: PlainGalleryConfig;
-  descriptionConfig: Description;
+  private galleryFactory;
   @ViewChild('postContent') private postContent: ElementRef;
 
   constructor(
@@ -25,7 +31,9 @@ export class SinglePostComponent implements OnInit, AfterViewInit, MetaInitializ
     private route: ActivatedRoute,
     private router: Router,
     private metaTagsCreator: MetaTagsCreator,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private injector: Injector,
+    private app: ApplicationRef
   ) { }
 
   ngOnInit() {
@@ -37,44 +45,7 @@ export class SinglePostComponent implements OnInit, AfterViewInit, MetaInitializ
     } else {
       this.router.navigate(['error-404']);
     }
-    this.galleryConfig = this.getGalleryConfig();
-    this.descriptionConfig = this.getDescriptionConfig();
-    this.images = [
-      new Image(
-        0,
-        {
-          img: 'https://raw.githubusercontent.com/Ks89/angular-modal-gallery/v4/examples/systemjs/assets/images/gallery/img1.jpg',
-          description: 'Description 1'
-        },
-        {
-          img: 'https://raw.githubusercontent.com/Ks89/angular-modal-gallery/v4/examples/systemjs/assets/images/gallery/img1.jpg'
-        }
-      ),
-      new Image(
-        1,
-        {
-          img: 'https://raw.githubusercontent.com/Ks89/angular-modal-gallery/v4/examples/systemjs/assets/images/gallery/img2.png',
-          description: 'Description 2'
-        },
-        {
-          img: 'https://raw.githubusercontent.com/Ks89/angular-modal-gallery/v4/examples/systemjs/assets/images/gallery/img2.png'
-        }
-      ),
-      new Image(
-        2,
-        {
-          img: 'https://raw.githubusercontent.com/Ks89/angular-modal-gallery/v4/examples/systemjs/assets/images/gallery/img1.jpg',
-          description: 'Description 3'
-        }
-      ),
-      new Image(
-        3,
-        {
-          img: 'https://raw.githubusercontent.com/Ks89/angular-modal-gallery/v4/examples/systemjs/assets/images/gallery/img2.png',
-          description: 'Description 4'
-        }
-      )
-    ];
+    this.galleryFactory = this.componentFactoryResolver.resolveComponentFactory(ModalGalleryComponent);
   }
 
   ngAfterViewInit() {
@@ -84,34 +55,47 @@ export class SinglePostComponent implements OnInit, AfterViewInit, MetaInitializ
       .from(wysiwygChildren)
       .filter((el: HTMLElement) => el.className.includes('gallery') && el.hasAttribute('data-gallery-json'))
       .forEach((el: HTMLElement) => {
-        const galleryData = JSON.parse(el.getAttribute('data-gallery-json'));
-        let galleryImages = [];
-
-        galleryData.forEach((image, index) => {
-          galleryImages.push(new Image(
-            index,
-            {
-              img: image.large,
-              description: image.caption
-            },
-            {
-              img: image.thumbnail
-            }
-          ));
-        });
-        console.log(galleryImages);
-        // @todo create dynamically ks-gallery component and replace it with .gallery div
-
+        this.createDynamicGalleryComponent(el);
       });
   }
 
-  getDescriptionConfig() {
+  private createDynamicGalleryComponent(element: HTMLElement) {
+    setTimeout(() => {
+      const galleryData = JSON.parse(element.getAttribute('data-gallery-json'));
+      const ref = this.galleryFactory.create(this.injector, [], element);
+      ref.instance.modalImages = this.getImagesGalleryInput(galleryData);
+      ref.instance.plainGalleryConfig = this.getGalleryConfig();
+      ref.instance.description = this.getDescriptionConfig();
+      this.app.attachView(ref.hostView);
+    }, 1);
+  }
+
+  private getImagesGalleryInput(galleryData): Image[] {
+    const galleryImages = [];
+
+    galleryData.forEach((image, index) => {
+      galleryImages.push(new Image(
+        index,
+        {
+          img: image.large,
+          description: image.caption
+        },
+        {
+          img: image.thumbnail
+        }
+      ));
+    });
+
+    return galleryImages;
+  }
+
+  private getDescriptionConfig(): Description {
     return {
       strategy: DescriptionStrategy.HIDE_IF_EMPTY
     };
   }
 
-  getGalleryConfig(): PlainGalleryConfig {
+  private getGalleryConfig(): PlainGalleryConfig {
     return {
       strategy: PlainGalleryStrategy.GRID,
       layout: new GridLayout(

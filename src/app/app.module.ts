@@ -28,6 +28,7 @@ import { ContactFormComponent } from './pages/templates/contact/contact-form/con
 import 'hammerjs'; // <------ mandatory dependency for angular-modal-gallery
 import 'mousetrap'; // <------ mandatory dependency for angular-modal-gallery
 import { ModalGalleryModule } from 'angular-modal-gallery';
+import { ɵc as ModalGalleryComponent } from 'angular-modal-gallery';
 
 const templateComponents = [
   DefaultComponent,
@@ -65,7 +66,8 @@ const templateComponents = [
     MetaTagsCreator
   ],
   entryComponents: [
-    ...templateComponents
+    ...templateComponents,
+    ModalGalleryComponent
   ],
   bootstrap: [AppComponent]
 })

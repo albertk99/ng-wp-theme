@@ -7,15 +7,7 @@
   <p>Author:
     <span>{{ post._embedded.author[0].name }}</span>
   </p>
-  <ks-modal-gallery
-      [modalImages]="images"
-      [plainGalleryConfig]="galleryConfig"
-      [description]="descriptionConfig">
-  </ks-modal-gallery>
   <pre>
-     {{post.content.rendered}}
-  </pre>
-  <!-- <pre>
      {{post | json}}
-  </pre> -->
+  </pre>
 </div>
