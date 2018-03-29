@@ -59,6 +59,12 @@ export class SinglePostComponent implements OnInit, AfterViewInit, MetaInitializ
       });
   }
 
+  public initMetaTags() {
+    if (typeof this.post.yoast_meta !== 'undefined') {
+      this.metaTagsCreator.createMetaTags(this.post.yoast_meta);
+    }
+  }
+
   private createDynamicGalleryComponent(element: HTMLElement) {
     setTimeout(() => {
       const galleryData = JSON.parse(element.getAttribute('data-gallery-json'));
@@ -66,6 +72,9 @@ export class SinglePostComponent implements OnInit, AfterViewInit, MetaInitializ
       ref.instance.modalImages = this.getImagesGalleryInput(galleryData);
       ref.instance.plainGalleryConfig = this.getGalleryConfig();
       ref.instance.description = this.getDescriptionConfig();
+      ref.instance.previewConfig = { visible: true };
+      ref.instance.dotsConfig = { visible: false };
+      ref.instance.slideConfig = { infinite: false, sidePreviews: { show: false } };
       this.app.attachView(ref.hostView);
     }, 1);
   }
@@ -109,11 +118,5 @@ export class SinglePostComponent implements OnInit, AfterViewInit, MetaInitializ
         }
       )
     };
-  }
-
-  initMetaTags() {
-    if (typeof this.post.yoast_meta !== 'undefined') {
-      this.metaTagsCreator.createMetaTags(this.post.yoast_meta);
-    }
   }
 }
