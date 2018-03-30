@@ -7,7 +7,7 @@ import { PageBaseTemplate } from '../page-base-template';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent extends PageBaseTemplate {
-  static readonly className = 'ContactComponent';
+  public static readonly className = 'ContactComponent';
 
   constructor() {
     super();

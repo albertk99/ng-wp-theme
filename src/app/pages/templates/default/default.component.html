@@ -2,6 +2,7 @@
   <p>
     default template works! page id: {{ page.id }}
   </p>
+  <div #wysiwyg [innerHTML]="page.content.rendered | safe: 'html'"></div>
 </div>
 <pre>
   {{ page | json }}

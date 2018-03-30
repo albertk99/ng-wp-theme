@@ -3,7 +3,7 @@
   <a [href]="post.link">
     <h1>{{ post.title.rendered }}</h1>
   </a>
-  <div #postContent [innerHTML]="post.content.rendered | safe: 'html'">test</div>
+  <div #wysiwyg [innerHTML]="post.content.rendered | safe: 'html'"></div>
   <p>Author:
     <span>{{ post._embedded.author[0].name }}</span>
   </p>

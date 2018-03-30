@@ -7,7 +7,7 @@ import { PageBaseTemplate } from '../page-base-template';
   styleUrls: ['./page-404.component.scss']
 })
 export class Page404Component extends PageBaseTemplate {
-  static readonly className = 'Page404Component';
+  public static readonly className = 'Page404Component';
 
   constructor() {
     super();

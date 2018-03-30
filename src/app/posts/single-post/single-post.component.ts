@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { PostsService } from '../../shared/wp-services/posts.service';
 import { GalleryInjectorService } from '../../shared/gallery/gallery-injector.service';
 import { MetaInitializer } from '../../shared/yoast-seo/meta-initializer.interface';
 import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
@@ -10,15 +9,14 @@ import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
   styleUrls: ['./single-post.component.scss'],
-  providers: [PostsService, GalleryInjectorService]
+  providers: [GalleryInjectorService]
 })
 
 export class SinglePostComponent implements OnInit, AfterViewInit, MetaInitializer {
-  post: any;
-  @ViewChild('postContent') private postContent: ElementRef;
+  public post: any;
+  @ViewChild('wysiwyg') private postContent: ElementRef;
 
   constructor(
-    private postsService: PostsService,
     private galleryInjectorService: GalleryInjectorService,
     private route: ActivatedRoute,
     private router: Router,
