@@ -29,6 +29,7 @@ import 'hammerjs'; // <------ mandatory dependency for angular-modal-gallery
 import 'mousetrap'; // <------ mandatory dependency for angular-modal-gallery
 import { ModalGalleryModule } from 'angular-modal-gallery';
 import { ɵc as ModalGalleryComponent } from 'angular-modal-gallery';
+import { PreloaderComponent } from './shared/preloader/preloader.component';
 
 const templateComponents = [
   DefaultComponent,
@@ -48,7 +49,8 @@ const templateComponents = [
     SinglePostComponent,
     PageBaseComponent,
     ...templateComponents,
-    ContactFormComponent
+    ContactFormComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,
