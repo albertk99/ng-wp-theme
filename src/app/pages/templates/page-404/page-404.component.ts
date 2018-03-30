@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { PageBaseTemplate } from '../page-base-template';
 
 @Component({
@@ -8,7 +8,6 @@ import { PageBaseTemplate } from '../page-base-template';
 })
 export class Page404Component extends PageBaseTemplate {
   static readonly className = 'Page404Component';
-  @Input() page: any;
 
   constructor() {
     super();
