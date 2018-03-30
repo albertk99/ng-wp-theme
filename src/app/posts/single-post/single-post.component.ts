@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { PostsService } from '../../shared/wp-services/posts.service';
+import { GalleryInjectorService } from '../../shared/gallery/gallery-injector.service';
 import { MetaInitializer } from '../../shared/yoast-seo/meta-initializer.interface';
 import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
 
@@ -9,14 +10,16 @@ import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
   styleUrls: ['./single-post.component.scss'],
-  providers: [PostsService]
+  providers: [PostsService, GalleryInjectorService]
 })
 
-export class SinglePostComponent implements OnInit, MetaInitializer {
+export class SinglePostComponent implements OnInit, AfterViewInit, MetaInitializer {
   post: any;
+  @ViewChild('postContent') private postContent: ElementRef;
 
   constructor(
     private postsService: PostsService,
+    private galleryInjectorService: GalleryInjectorService,
     private route: ActivatedRoute,
     private router: Router,
     private metaTagsCreator: MetaTagsCreator
@@ -33,7 +36,11 @@ export class SinglePostComponent implements OnInit, MetaInitializer {
     }
   }
 
-  initMetaTags() {
+  ngAfterViewInit() {
+    this.galleryInjectorService.initializeGalleries(this.postContent);
+  }
+
+  public initMetaTags() {
     if (typeof this.post.yoast_meta !== 'undefined') {
       this.metaTagsCreator.createMetaTags(this.post.yoast_meta);
     }

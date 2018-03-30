@@ -3,8 +3,11 @@
   <a [href]="post.link">
     <h1>{{ post.title.rendered }}</h1>
   </a>
-  <div [innerHTML]="post.content.rendered"></div>
+  <div #postContent [innerHTML]="post.content.rendered | safe: 'html'">test</div>
   <p>Author:
     <span>{{ post._embedded.author[0].name }}</span>
   </p>
+  <pre>
+     {{post | json}}
+  </pre>
 </div>

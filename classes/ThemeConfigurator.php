@@ -15,6 +15,8 @@ class ThemeConfigurator
         add_action('init', array($this, 'registerMenus'));
         add_action('admin_menu', array($this, 'hideMenuElements'));
         add_action('init', array($this, 'initThemeSettings'));
+        add_filter('post_gallery', array($this, 'customGalleryOutput'), 10, 2);
+
         $this->initPageTemplater();
         $this->initYoastMeta();
         $this->initAPIExtender();
@@ -46,6 +48,24 @@ class ThemeConfigurator
         }
 
         return $templates;
+    }
+
+    public function customGalleryOutput($string, $attr) {
+        $posts = get_posts(array('include' => $attr['ids'], 'post_type' => 'attachment'));
+        $galleryData = array();
+
+        foreach($posts as $imagePost){
+            $galleryData[] = (object) array(
+                'thumbnail' => wp_get_attachment_image_src($imagePost->ID, 'thumbnail')[0],
+                'medium' => wp_get_attachment_image_src($imagePost->ID, 'medium')[0],
+                'large' => wp_get_attachment_image_src($imagePost->ID, 'large')[0],
+                'full' => wp_get_attachment_image_src($imagePost->ID, 'full')[0],
+                'caption' => $imagePost->post_excerpt,
+                'alt' => get_post_meta($imagePost->ID, '_wp_attachment_image_alt', true)
+            );
+        }
+
+        return "<div class='gallery' data-gallery-json='" . json_encode($galleryData) . "'></div>";
     }
 
     public function hideMenuElements()

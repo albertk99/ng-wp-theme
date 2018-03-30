@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Response } from '@angular/http/src/static_response';
 import { Observable } from 'rxjs/Observable';
 
 import { ACFServicesBase } from './acf-services-base';
@@ -11,7 +10,7 @@ export class PagesService extends ACFServicesBase {
     super(http);
   }
 
-  getByID(id: Number, params: Object = {}): Observable<Response> {
-    return this.http.get<Response>(`pages/${id}`, { params: super.objToHttpParams(params) });
+  getByID(id: Number, params: Object = {}): Observable<any> {
+    return this.http.get<any>(`pages/${id}`, { params: super.objToHttpParams(params) });
   }
 }

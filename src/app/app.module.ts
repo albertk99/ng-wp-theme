@@ -24,6 +24,12 @@ import { ExampleTemplateComponent } from './pages/templates/example-template/exa
 import { ContactComponent } from './pages/templates/contact/contact.component';
 import { ContactFormComponent } from './pages/templates/contact/contact-form/contact-form.component';
 
+// custom dependencies
+import 'hammerjs'; // <------ mandatory dependency for angular-modal-gallery
+import 'mousetrap'; // <------ mandatory dependency for angular-modal-gallery
+import { ModalGalleryModule } from 'angular-modal-gallery';
+import { ɵc as ModalGalleryComponent } from 'angular-modal-gallery';
+
 const templateComponents = [
   DefaultComponent,
   Page404Component,
@@ -48,7 +54,8 @@ const templateComponents = [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ModalGalleryModule.forRoot()
   ],
   providers: [
     {
@@ -59,7 +66,8 @@ const templateComponents = [
     MetaTagsCreator
   ],
   entryComponents: [
-    ...templateComponents
+    ...templateComponents,
+    ModalGalleryComponent
   ],
   bootstrap: [AppComponent]
 })
