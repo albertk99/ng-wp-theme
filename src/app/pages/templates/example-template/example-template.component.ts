@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { PageTemplate } from '../page-template';
+import { PageBaseTemplate } from '../page-base-template';
 
 @Component({
   selector: 'app-example-template',
   templateUrl: './example-template.component.html',
   styleUrls: ['./example-template.component.scss']
 })
-export class ExampleTemplateComponent extends PageTemplate {
+export class ExampleTemplateComponent extends PageBaseTemplate {
   static readonly className = 'ExampleTemplateComponent';
   @Input() page: any;
 
