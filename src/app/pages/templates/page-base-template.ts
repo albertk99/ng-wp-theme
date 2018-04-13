@@ -1,7 +1,5 @@
-import { Input } from '@angular/core';
-
 export abstract class PageBaseTemplate {
-  static readonly className: string; // this property is unfortunately required
-                                     // because loading templates by component class name is not supported with minification...
+  public static readonly className: string; // this property is unfortunately required
+                                               // because loading templates by component class name is not supported with minification...
   public page: any;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { GalleryInjectorService } from '../../shared/gallery/gallery-injector.service';
-import { MetaInitializer } from '../../shared/yoast-seo/meta-initializer.interface';
+import { MetaProvider } from '../../shared/yoast-seo/meta-provider.interface';
 import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
 
 @Component({
@@ -12,7 +12,7 @@ import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
   providers: [GalleryInjectorService]
 })
 
-export class SinglePostComponent implements OnInit, AfterViewInit, MetaInitializer {
+export class SinglePostComponent implements OnInit, AfterViewInit, MetaProvider {
   public post: any;
   @ViewChild('wysiwyg') private postContent: ElementRef;
 

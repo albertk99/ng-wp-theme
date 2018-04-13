@@ -2,7 +2,7 @@ import { Component, OnInit, ComponentFactoryResolver, ViewChild, Type } from '@a
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { PageTemplateDirective } from './directives/page-template.directive';
-import { MetaInitializer } from '../shared/yoast-seo/meta-initializer.interface';
+import { MetaProvider } from '../shared/yoast-seo/meta-provider.interface';
 import { MetaTagsCreator } from '../shared/yoast-seo/meta-tags-creator';
 
 @Component({
@@ -10,7 +10,7 @@ import { MetaTagsCreator } from '../shared/yoast-seo/meta-tags-creator';
   templateUrl: './page-base.component.html',
   styleUrls: ['./page-base.component.scss']
 })
-export class PageBaseComponent implements OnInit, MetaInitializer {
+export class PageBaseComponent implements OnInit, MetaProvider {
   private page: any;
   @ViewChild(PageTemplateDirective) templateDirective: PageTemplateDirective;
 

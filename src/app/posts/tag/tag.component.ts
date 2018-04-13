@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { MetaInitializer } from '../../shared/yoast-seo/meta-initializer.interface';
+import { MetaProvider } from '../../shared/yoast-seo/meta-provider.interface';
 import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
 
 @Component({
@@ -9,7 +9,7 @@ import { MetaTagsCreator } from '../../shared/yoast-seo/meta-tags-creator';
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss']
 })
-export class TagComponent implements OnInit, MetaInitializer {
+export class TagComponent implements OnInit, MetaProvider {
   public tag: any;
 
   constructor(

@@ -7,7 +7,7 @@ import { Router, Event, NavigationStart, NavigationEnd, NavigationCancel, Naviga
   styleUrls: ['./preloader.component.scss']
 })
 export class PreloaderComponent {
-  private isLoading: Boolean = true;
+  public isLoading: Boolean = true;
 
   constructor(private router: Router) {
     router.events.subscribe((routerEvent: Event) => {
