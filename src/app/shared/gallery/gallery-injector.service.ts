@@ -4,11 +4,10 @@ import {
   Image,
   PlainGalleryConfig,
   PlainGalleryStrategy,
-  LineLayout,
   DescriptionStrategy,
   Description,
   GridLayout,
-  ɵc as ModalGalleryComponent
+  ɵd as ModalGalleryComponent
 } from 'angular-modal-gallery';
 
 @Injectable()

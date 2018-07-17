@@ -1,4 +1,4 @@
-# Angular 5 + Wordpress starter theme
+# Angular 6 + Wordpress starter theme
 
 Wordpress starter theme with Angular 5 app integration.
 
