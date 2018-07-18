@@ -14,4 +14,8 @@ export class PagesService extends WPServicesBase implements Pages {
   getBySlug(slug: String, params: Object = {}): Observable<any> {
     return this.http.get<any>(`pages?slug=${slug}`, { params: super.objToHttpParams(params) });
   }
+
+  getHomepage(params: Object = {}): Observable<any> {
+    return this.http.get<any>(`frontpage`, { params: super.objToHttpParams(params) });
+  }
 }

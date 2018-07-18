@@ -6,7 +6,6 @@ import { CategoryComponent } from './posts/category/category.component';
 import { TagComponent } from './posts/tag/tag.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
 import { PageBaseComponent } from './pages/page-base.component';
-import { Page404Component } from './pages/templates/page-404/page-404.component';
 
 import { PostResolver } from './shared/wp-services/resolvers/post.resolver';
 import { PageResolver } from './shared/wp-services/resolvers/page.resolver';
@@ -16,8 +15,11 @@ import { TagResolver } from './shared/wp-services/resolvers/tag.resolver';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: PostListComponent,
-    pathMatch: 'full'
+    resolve: {
+      page: PageResolver
+    }
   },
   {
     path: 'post/:slug',

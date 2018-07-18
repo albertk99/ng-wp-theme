@@ -13,6 +13,6 @@ export class PageResolver implements Resolve<any> {
   }
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
-    return this.pagesService.getBySlug(route.paramMap.get('slug'));
+    return route.paramMap.get('slug') ? this.pagesService.getBySlug(route.paramMap.get('slug')) : this.pagesService.getHomepage();
   }
 }
